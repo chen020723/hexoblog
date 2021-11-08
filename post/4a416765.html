@@ -1,0 +1,454 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>搭建hexo博客 | chen&amp;blog</title><meta name="keywords" content="hexo"><meta name="author" content="chen"><meta name="copyright" content="chen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文章介绍此文章总结不易，参考各个文章总结，如有问题请留言….. 环境要求笔者环境： win11 64位； node.js：v14.15.3 64位； git：2.29.2.windows.2 64位 编写代码使用Notepad++ node.js安装下载node-v14.15.3-x64.msi 安装自主安装（修改安装路径，一路next） 验证安装是否成功123456cmd 查看版本C:\User">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建hexo博客">
+<meta property="og:url" content="https://hexo.pifrij.cn/post/4a416765.html">
+<meta property="og:site_name" content="chen&amp;blog">
+<meta property="og:description" content="文章介绍此文章总结不易，参考各个文章总结，如有问题请留言….. 环境要求笔者环境： win11 64位； node.js：v14.15.3 64位； git：2.29.2.windows.2 64位 编写代码使用Notepad++ node.js安装下载node-v14.15.3-x64.msi 安装自主安装（修改安装路径，一路next） 验证安装是否成功123456cmd 查看版本C:\User">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/1.jpg">
+<meta property="article:published_time" content="2021-11-07T03:02:00.000Z">
+<meta property="article:modified_time" content="2021-11-08T09:13:53.929Z">
+<meta property="article:author" content="chen">
+<meta property="article:tag" content="hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/1.jpg"><link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/avater.jpg"><link rel="canonical" href="https://hexo.pifrij.cn/post/4a416765"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="6-q1wNYu2Wx46gYIC4dq0tCTHbZfyPjAmdigB0qPJlQ"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '搭建hexo博客',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-11-08 17:13:53'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="https://hexo.pifrij.cn/css/Lete.css"><link rel="stylesheet" href="https://hexo.pifrij.cn/css/icon.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/avater.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-BAI-wenzhang"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-timeAxis"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo"></i><span> 关于笔者</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw iconfont icon-liuyanban-05"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-BAI-wenzhang"></i><span> 目录</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-timeAxis"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/1.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">chen&amp;blog</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw iconfont icon-shouye"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-BAI-wenzhang"></i><span> 找文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-timeAxis"></i><span> 归档</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo"></i><span> 关于笔者</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw iconfont icon-liuyanban-05"></i><span> 留言板</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw iconfont icon-BAI-wenzhang"></i><span> 目录</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/categories/"><i class="fa-fw iconfont icon-fenlei"></i><span> 分类</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw iconfont icon-biaoqian"></i><span> 标签</span></a></li><li><a class="site-page child" href="/archives/"><i class="fa-fw iconfont icon-timeAxis"></i><span> 时间轴</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw iconfont icon-wo"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">搭建hexo博客</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-11-07T03:02:00.000Z" title="发表于 2021-11-07 11:02:00">2021-11-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-11-08T09:13:53.929Z" title="更新于 2021-11-08 17:13:53">2021-11-08</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/hexo/">hexo</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>11分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="搭建hexo博客"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="文章介绍"><a href="#文章介绍" class="headerlink" title="文章介绍"></a>文章介绍</h1><p>此文章总结不易，参考各个文章总结，如有问题请留言…..</p>
+<h1 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h1><p>笔者环境：</p>
+<p>win11 64位；</p>
+<p>node.js：v14.15.3 64位；</p>
+<p>git：2.29.2.windows.2 64位</p>
+<p>编写代码使用Notepad++</p>
+<h2 id="node-js安装"><a href="#node-js安装" class="headerlink" title="node.js安装"></a>node.js安装</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://nodejs.org/download/release/v14.15.3/node-v14.15.3-x64.msi">node-v14.15.3-x64.msi</a></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>自主安装（修改安装路径，一路next）</p>
+<h3 id="验证安装是否成功"><a href="#验证安装是否成功" class="headerlink" title="验证安装是否成功"></a>验证安装是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cmd 查看版本</span><br><span class="line">C:\Users\hong&gt;node -v</span><br><span class="line">v14.15.3</span><br><span class="line"></span><br><span class="line">C:\Users\hong&gt;npm -v</span><br><span class="line">6.14.9</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置全局目录"><a href="#设置全局目录" class="headerlink" title="设置全局目录"></a>设置全局目录</h3><p>命令提示行打入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm conﬁg <span class="built_in">set</span> preﬁx <span class="string">&quot;E:\environment\nodejs\node_global&quot;</span></span><br><span class="line">npm conﬁg <span class="built_in">set</span> cache <span class="string">&quot;E:\environment\nodejs\node_cache&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h2><h3 id="下载-1"><a href="#下载-1" class="headerlink" title="下载"></a>下载</h3><p><a target="_blank" rel="noopener" href="https://github.com/git-for-windows/git/releases/download/v2.33.1.windows.1/Git-2.33.1-64-bit.exe">Git-2.33.1-64-bit.exe</a></p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><p>自主安装（修改安装路径，一路next）</p>
+<h3 id="验证安装是否成功-1"><a href="#验证安装是否成功-1" class="headerlink" title="验证安装是否成功"></a>验证安装是否成功</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cmd 查看版本</span><br><span class="line">C:\Users\hong&gt;git --version</span><br><span class="line">git version 2.33.1</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h3><p>Github在下文需要时介绍，设置在部署Github再执行也不迟</p>
+<p>桌面右键，选择Git Bash Here</p>
+<ol>
+<li><p>设置Github的名字和邮箱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;你的名字&quot;</span></span><br><span class="line">git config --global user.email“你的邮箱<span class="string">&quot;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>生成ssh</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;你的名字/你的邮箱&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后会出现以下内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Generating public/private rsa key pair.</span><br><span class="line">Enter file <span class="keyword">in</span> <span class="built_in">which</span> to save the key (/c/Users/Administrator/.ssh/id_rsa):</span><br><span class="line">/c/Users/Administrator/.ssh/id_rsa already exists.</span><br><span class="line">Overwrite (y/n)? y（输入y）</span><br><span class="line">Enter passphrase (empty <span class="keyword">for</span> no passphrase):（回车）</span><br><span class="line">Enter same passphrase again:（回车）</span><br></pre></td></tr></table></figure>
+
+<p>系统会自动在.ssh文件夹(<strong>.SSH在C:\Users\Windows用户名目录下</strong>)下生成两个文件，id_rsa和id_rsa.pub，用Notepad++打开id_rsa.pub，复制到</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/image-20211107121902194.png" alt="image-20211107121902194"></p>
+</li>
+<li><p>验证与github连接是否成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="Hexo"><a href="#Hexo" class="headerlink" title="Hexo"></a>Hexo</h1><h2 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands.html">Hexo指令</a></p>
+<h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 选择存放博客文件的位置，鼠标右键，选择Git Bash Here</span></span><br><span class="line"><span class="comment"># 依次执行完成以下操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1.hexo框架的全局安装</span></span><br><span class="line">npm install -g hexo-cli</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2.新建一个网站，[folder]改自定义博客文件夹名称</span></span><br><span class="line">hexo init [folder]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3.进入博客文件夹</span></span><br><span class="line"><span class="built_in">cd</span> 上一步博客文件夹名称</span><br><span class="line"></span><br><span class="line"><span class="comment"># 4.安装博客所需要的依赖文件</span></span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>运行完成，此时博客文件夹中多了许多文件， 此时 Hexo 框架的本地搭建已经完成了。</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/image-20211107122548660.png" alt="image-20211107122548660"></p>
+<h2 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h2><p>生成静态文件并启动服务</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g &amp;&amp;  hexo s</span><br></pre></td></tr></table></figure>
+
+<p>运行成功最后一行出现</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Hexo is running at http://localhost:4000 . Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+
+<p>浏览器中打开 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 或127.0.0.1:4000，看到网页，则运行成功</p>
+<h1 id="butterfly主题"><a href="#butterfly主题" class="headerlink" title="butterfly主题"></a>butterfly主题</h1><h2 id="安装-3"><a href="#安装-3" class="headerlink" title="安装"></a>安装</h2><p>在hexo根目录执行</p>
+<ol>
+<li><p>下载</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> -b master https://gitee.com/immyw/hexo-theme-butterfly.git themes/butterfly</span><br></pre></td></tr></table></figure></li>
+<li><p>应用主题</p>
+<p>修改hexo根目录下的_config.yml，修改主题</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">theme:</span> <span class="string">butterfly</span></span><br></pre></td></tr></table></figure></li>
+<li><p>安装插件，pug 以及 stylus 的渲染器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-renderer-pug hexo-renderer-stylus --save</span><br></pre></td></tr></table></figure></li>
+<li><p>升级建议</p>
+<p>为减少升级主题带来的不便，采用以下方法</p>
+<p>hexo根目录下创建config.butterfly.yml，主题（磁盘:\博客跟目录\themes\butterfly）下的config.yml內容复制到刚刚创建的config.butterfly.yml</p>
+<p>注：</p>
+<ol>
+<li>主题目录下的config.yml不可删</li>
+<li>以后只需要配置config.butterfly.yml即可，配置主题下config.yml无效</li>
+</ol>
+</li>
+</ol>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>修改配置文件config.yml</p>
+<h3 id="语言修改"><a href="#语言修改" class="headerlink" title="语言修改"></a>语言修改</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="导航菜单"><a href="#导航菜单" class="headerlink" title="导航菜单"></a>导航菜单</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 例如</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="string">首页:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="string">时间轴:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="string">标签:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="string">分类:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-folder-open</span></span><br><span class="line">  <span class="string">清单||fa</span> <span class="attr">fa-heartbeat:</span></span><br><span class="line">    <span class="string">音乐:</span> <span class="string">/music/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-music</span></span><br><span class="line">    <span class="string">照片:</span> <span class="string">/Gallery/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-images</span></span><br><span class="line">    <span class="string">电影:</span> <span class="string">/movies/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-video</span></span><br><span class="line">  <span class="string">关于:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fas</span> <span class="string">fa-heart</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="搜索系统"><a href="#搜索系统" class="headerlink" title="搜索系统"></a>搜索系统</h3><h4 id="安装-4"><a href="#安装-4" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-generator-search --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="评论（twikoo）"><a href="#评论（twikoo）" class="headerlink" title="评论（twikoo）"></a>评论（twikoo）</h3><h4 id="手动部署"><a href="#手动部署" class="headerlink" title="手动部署"></a>手动部署</h4><ol>
+<li>购买腾讯云 云开发CloudBase，推荐上海环境，名称自由填写</li>
+<li>进入<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/tcb/">云开发控制台(opens new window)</a></li>
+<li>进入<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/tcb/env/login">环境-登录授权 (opens new window)</a>，启用“匿名登录”</li>
+<li>进入<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/tcb/env/safety">环境-安全配置 (opens new window)</a>，将网站域名添加到“WEB安全域名”</li>
+<li>进入<a target="_blank" rel="noopener" href="https://console.cloud.tencent.com/tcb/scf/index">环境-云函数 (opens new window)</a>，点击“新建云函数”</li>
+<li>函数名称请填写：<code>twikoo</code>，创建方式请选择：<code>空白函数</code>，运行环境请选择：Nodejs12.16，函数内存请选择：256MB`，点击“下一步”</li>
+<li>清空输入框中的示例代码，复制以下代码、粘贴到“函数代码”输入框中，点击“确定”</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exports</span>.main = <span class="built_in">require</span>(<span class="string">&#x27;twikoo-func&#x27;</span>).main</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li><p>创建完成后，点击“twikoo”进入云函数详情页，进入“函数代码”标签，点击“文件 - 新建文件”，输入 <code>package.json</code>，回车</p>
+</li>
+<li><p>复制以下代码、粘贴到代码框中，点击“保存并安装依赖”</p>
+</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="attr">&quot;dependencies&quot;</span>: &#123; <span class="attr">&quot;twikoo-func&quot;</span>: <span class="string">&quot;1.4.10&quot;</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li><p>环境ID (envId) 填写到配置上</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">twikoo:</span></span><br><span class="line">  <span class="attr">envId:</span></span><br><span class="line">  <span class="attr">region:</span></span><br><span class="line">  <span class="attr">visitor:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">option:</span></span><br></pre></td></tr></table></figure></li>
+<li><p>开启评论</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comments:</span></span><br><span class="line">  <span class="comment"># Up to two comments system, the first will be shown as default</span></span><br><span class="line">  <span class="comment"># Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Waline/Utterances/Facebook Comments/Twikoo</span></span><br><span class="line">  <span class="attr">use:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">Twikoo</span> </span><br><span class="line">  <span class="attr">text:</span> <span class="literal">true</span> <span class="comment"># Display the comment name next to the button</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">lazyload:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">count:</span> <span class="literal">false</span> <span class="comment"># Display comment count in post&#x27;s top_img</span></span><br><span class="line">  <span class="attr">card_post_count:</span> <span class="literal">false</span> <span class="comment"># Display comment count in Home Page</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h4 id="开启twikoo评论管理面板"><a href="#开启twikoo评论管理面板" class="headerlink" title="开启twikoo评论管理面板"></a>开启twikoo评论管理面板</h4><ol>
+<li>进入环境-登录授权 (opens new window)，点击“自定义登录”右边的“私钥下载”，下载私钥文件</li>
+<li>用文本编辑器打开私钥文件，复制全部内容</li>
+<li>点击评论窗口的“小齿轮”图标，粘贴私钥文件内容，并设置管理员密码</li>
+</ol>
+<h1 id="部署到Github"><a href="#部署到Github" class="headerlink" title="部署到Github"></a>部署到Github</h1><p>本地博客已经安装完成，但是只限于在本地，博客需要让别人访问，所以部署到Github Pages上，Github托管了博客，别人就可以访问</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><ol>
+<li><p>创建仓库</p>
+<ol>
+<li>仓库名：用户名.github.io</li>
+<li>Public   公开</li>
+</ol>
+</li>
+<li><p>创建完成后，复制仓库SSH地址，粘贴到博客文件夹下的config.yml文件里</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repository:</span> </span><br><span class="line">    <span class="attr">github:</span> <span class="string">git@github.com:chen020723/chen020723.github.io.git</span> <span class="comment">#把博客推送至github</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span> <span class="comment">#把博客推送至主分支</span></span><br></pre></td></tr></table></figure></li>
+<li><p>安装hexo部署插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 博客根目录执行</span></span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></li>
+<li><p>如之前git未设置此刻必须设置（生成.SSH，设置Github用户名和邮箱）</p>
+</li>
+<li><p>博客根目录下打开Git Bash Here执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 本地文件部署到github新建的仓库中</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure></li>
+<li><p>通过访问<strong>https://自己的用户名.github.io</strong>就可以访问部署到Github上的博客</p>
+</li>
+</ol>
+<h2 id="Github自定义域名"><a href="#Github自定义域名" class="headerlink" title="Github自定义域名"></a>Github自定义域名</h2><ol>
+<li>购买域名，解析：<ol>
+<li>记录类型：CNAME</li>
+<li>记录值：自己的用户名.github.io</li>
+</ol>
+</li>
+<li>博客根目录下的source文件夹下新建CNAME文件，<strong>无后缀！</strong>，里面填入域名，保存</li>
+<li>使用hexo d命令将博客部署到Github上</li>
+<li>进入Github的博客仓库依次点击Setting—&gt;Page</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/image-20211107135714801.png" alt="image-20211107135714801"></p>
+<h1 id="又拍云CDN全站加速"><a href="#又拍云CDN全站加速" class="headerlink" title="又拍云CDN全站加速"></a>又拍云CDN全站加速</h1><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><ol>
+<li><p>注册又拍云：**<a target="_blank" rel="noopener" href="https://console.upyun.com/register/?invite=BkHDGCzMw">点我注册</a>**</p>
+</li>
+<li><p>加入又拍云联盟：<a target="_blank" rel="noopener" href="https://www.upyun.com/league">https://www.upyun.com/league</a> 点击申请</p>
+</li>
+</ol>
+<h2 id="创建CDN服务"><a href="#创建CDN服务" class="headerlink" title="创建CDN服务"></a>创建CDN服务</h2><ol>
+<li>创建CDN</li>
+</ol>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/2021-11-07_144420.jpg" alt="2021-11-07_144420"></p>
+<ol start="2">
+<li>又拍云提供的CNAME地址（进入服务-》域名管理），去域名提供商解析到加速域名</li>
+<li>GitHub Pages需取消强制HTTPS</li>
+</ol>
+<h2 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h2><p>进入CDN服务配置</p>
+<ol>
+<li><p>配置SSL</p>
+<ul>
+<li>进入HTTPS设置</li>
+<li>申请免费SSL证书：<ul>
+<li>又拍云申请</li>
+<li>域名服务商申请</li>
+</ul>
+</li>
+<li>开启HTTPS</li>
+</ul>
+</li>
+<li><p>优化配置</p>
+<ul>
+<li><p>开启 Gzip 和 Brotli，压缩级别调到3</p>
+</li>
+<li><p>开启页面压缩</p>
+</li>
+<li><p>HTTP 302 调度</p>
+</li>
+<li><p>开启TLS1.3，最低建议TLSv1.1</p>
+</li>
+<li><p>开启 HTTP/2 + Server Push</p>
+</li>
+<li><p>WebP 自适应</p>
+</li>
+<li><p>开启源站资源迁移</p>
+</li>
+</ul>
+</li>
+<li><p>IP访问限制</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/image-20200826104652023.png"></p>
+</li>
+<li><p>CC防护</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/image-20200826104833875.png"></p>
+</li>
+</ol>
+<h1 id="jsDelivr-Github做图床"><a href="#jsDelivr-Github做图床" class="headerlink" title="jsDelivr+Github做图床"></a>jsDelivr+Github做图床</h1><ol>
+<li><p>创建 Github 仓库，名字随意，并使用readme.md初始化仓库</p>
+</li>
+<li><p>获取 token，生成的token保存</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/image-20211107151745392.png" alt="image-20211107151745392"></p>
+</li>
+<li><p>填入 PicGo 配置</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/snipaste_20211107_152156.png"></p>
+<p>自定义域名：<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/%E7%94%A8%E6%88%B7%E5%90%8D/%E4%BB%93%E5%BA%93%E5%90%8D@master">https://cdn.jsdelivr.net/gh/用户名/仓库名@master</a></p>
+</li>
+</ol>
+<h1 id="Typora集成PicGo"><a href="#Typora集成PicGo" class="headerlink" title="Typora集成PicGo"></a>Typora集成PicGo</h1><h2 id="PicGO-2-3-0"><a href="#PicGO-2-3-0" class="headerlink" title="PicGO 2.3.0"></a>PicGO 2.3.0</h2><p>激活 PicGo-Server，进入 PicGo 设置–设置 Server，默认</p>
+<h2 id="Typora-0-9-86"><a href="#Typora-0-9-86" class="headerlink" title="Typora 0.9.86"></a>Typora 0.9.86</h2><p>（文件-&gt;偏好设置-&gt;图像）</p>
+<p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/image-20211107152722112.png" alt="image-20211107152722112"></p>
+<h1 id="推荐插件和配置"><a href="#推荐插件和配置" class="headerlink" title="推荐插件和配置"></a>推荐插件和配置</h1><h2 id="文章生成永久url连接"><a href="#文章生成永久url连接" class="headerlink" title="文章生成永久url连接"></a>文章生成永久url连接</h2><ol>
+<li><p>首先安装插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-abbrlink --save</span><br></pre></td></tr></table></figure></li>
+<li><p>然后改配置(_config.yml)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 改动的地方</span></span><br><span class="line"><span class="attr">url:</span> <span class="string">http://youthlql.gitee.io</span></span><br><span class="line"><span class="attr">root:</span> <span class="string">/</span></span><br><span class="line"><span class="comment">#permalink: :year/:month/:day/:title/</span></span><br><span class="line"><span class="attr">permalink:</span> <span class="string">post/:abbrlink.html</span></span><br><span class="line"><span class="attr">abbrlink:</span></span><br><span class="line">  <span class="attr">alg:</span> <span class="string">crc32</span>  <span class="comment"># 算法：crc16(default) and crc32</span></span><br><span class="line">  <span class="attr">rep:</span> <span class="string">hex</span>    <span class="comment"># 进制：dec(default) and hex</span></span><br><span class="line"><span class="attr">permalink_defaults:</span></span><br><span class="line"><span class="attr">pretty_urls:</span></span><br><span class="line">  <span class="attr">trailing_index:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;index.html&#x27; from permalinks</span></span><br><span class="line">  <span class="attr">trailing_html:</span> <span class="literal">true</span> <span class="comment"># Set to false to remove trailing &#x27;.html&#x27; from permalinks</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<h1 id="美化"><a href="#美化" class="headerlink" title="美化"></a>美化</h1><p>butterfly主题下：</p>
+<h2 id="css"><a href="#css" class="headerlink" title="css"></a>css</h2><p>source-&gt;css-&gt;新建任意名字.css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">1.每一个不同地方的css会空两行</span></span><br><span class="line"><span class="comment">2.参考: https://www.antmoe.com/posts/a811d614/</span></span><br><span class="line"><span class="comment">  https://butterfly.lete114.top/article/Butterfly-config.html</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 版权链接去掉下划线 */</span></span><br><span class="line"><span class="selector-class">.layout_post</span> <span class="selector-class">.post-copyright</span> <span class="selector-class">.post-copyright-info</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 博主昵称颜色 --也就是首页侧边栏头像下面那个昵称*/</span></span><br><span class="line"><span class="selector-class">.author-info__name</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#121a2a</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 页脚透明 */</span></span><br><span class="line"><span class="selector-id">#footer</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: transparent <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 首页中间打字效果上方 */</span></span><br><span class="line"><span class="selector-id">#page-header</span> <span class="selector-id">#site_title</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#80bdab</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 顶部导航栏 */</span></span><br><span class="line"><span class="selector-id">#nav</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#f9f2f4</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*页脚自定义字段字体颜色,也就是配置文件里的footer_custom_text*/</span></span><br><span class="line"><span class="selector-class">.footer_custom_text</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#EEEEEE</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*鼠标样式*/</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">cursor</span>: <span class="built_in">url</span>(<span class="string">https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/default.cur</span>),</span><br><span class="line">        default;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">a</span>,</span><br><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">    <span class="attribute">cursor</span>: <span class="built_in">url</span>(<span class="string">https://cdn.jsdelivr.net/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur</span>),</span><br><span class="line">        default;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 滚动条 */</span></span><br><span class="line">::-webkit-scrollbar &#123;</span><br><span class="line">  width: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">14px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-track &#123;</span><br><span class="line">  background-color: <span class="built_in">rgba</span>( <span class="number">86</span>, <span class="number">190</span>, <span class="number">150</span>, <span class="number">0.2</span>);</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-thumb &#123;</span><br><span class="line">  background-color: <span class="number">#4BB994</span>;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">-webkit-linear-gradient</span>(</span><br><span class="line">    <span class="number">45deg</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.4</span>) <span class="number">25%</span>,</span><br><span class="line">    transparent <span class="number">25%</span>,</span><br><span class="line">    transparent <span class="number">50%</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.4</span>) <span class="number">50%</span>,</span><br><span class="line">    <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.4</span>) <span class="number">75%</span>,</span><br><span class="line">    transparent <span class="number">75%</span>,</span><br><span class="line">    transparent</span><br><span class="line">  );</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">2em</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-webkit-scrollbar-corner &#123;</span><br><span class="line">  background-color: transparent;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">::-moz-selection &#123;</span><br><span class="line">  color: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#4BB994</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* a标签默认颜色 */</span></span><br><span class="line"><span class="selector-id">#article-container</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#00c4b6</span>;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 鼠标悬停时的颜色 */</span></span><br><span class="line"><span class="selector-id">#article-container</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#e58a8a</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*a标签颜色*/</span></span><br><span class="line"><span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#00c4b6</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*文章顶部图透明*/</span></span><br><span class="line"><span class="selector-id">#page-header</span> &#123;</span><br><span class="line">     <span class="attribute">background</span>: transparent <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#page-header</span><span class="selector-class">.post-bg</span>:before &#123;</span><br><span class="line">     position: absolute;</span><br><span class="line">     <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">     <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">     <span class="attribute">display</span>: block;</span><br><span class="line">     <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">     <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">     <span class="attribute">background</span>: transparent <span class="meta">!important</span>; <span class="comment">/*这个rgba可以自己改*/</span></span><br><span class="line">     <span class="attribute">content</span>: <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*--------------------下面是暂时用不到的css样式--------------------*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 自定义字体，暂时用不到先注释掉*/</span></span><br><span class="line"><span class="comment">/* @font-face &#123;</span></span><br><span class="line"><span class="comment">    font-family: &#x27;mycustom_font&#x27;;</span></span><br><span class="line"><span class="comment">    src: url(&#x27;https://cdn.jsdelivr.net/gh/youthlql/static/font/chun_feng_kai.ttf&#x27;);</span></span><br><span class="line"><span class="comment">	font-size: 16px;</span></span><br><span class="line"><span class="comment">&#125; */</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="js"><a href="#js" class="headerlink" title="js"></a>js</h2><p>source-&gt;js-&gt;新建任意名字.js</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//随机背景图片数组,图片可以换成图床链接，注意最后一条后面不要有逗号</span></span><br><span class="line"><span class="keyword">var</span> backimg =[</span><br><span class="line">  <span class="string">&quot;url(https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/shan.jpg)&quot;</span></span><br><span class="line">  ];</span><br><span class="line">  <span class="comment">//获取背景图片总数，生成随机数</span></span><br><span class="line">  <span class="keyword">var</span> bgindex =<span class="built_in">Math</span>.ceil(<span class="built_in">Math</span>.random() * (backimg.length-<span class="number">1</span>));</span><br><span class="line">  <span class="comment">//重设背景图片</span></span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">&quot;web_bg&quot;</span>).style.backgroundImage = backimg[bgindex];</span><br><span class="line">  <span class="comment">//重设banner图片</span></span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">&quot;page-header&quot;</span>).style.backgroundImage = backimg[bgindex];</span><br></pre></td></tr></table></figure>
+
+<h2 id="引入js，css"><a href="#引入js，css" class="headerlink" title="引入js，css"></a>引入js，css</h2><p>主题配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;https://hexo.pifrij.cn/css/Lete.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">bottom:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;script</span> <span class="string">src=&quot;https://hexo.pifrij.cn/js/Lete.js&quot;&gt;&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="阿里自定义图标"><a href="#阿里自定义图标" class="headerlink" title="阿里自定义图标"></a>阿里自定义图标</h1><p><a target="_blank" rel="noopener" href="https://www.iconfont.cn/home/index">阿里图标库</a></p>
+<ol>
+<li>搜索图标然后加入你的项目</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/youthlql/lqlp@v1.2.0/Hexo/build/0022.png"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/0022.png" alt="img"></a></p>
+<ol start="2">
+<li>访问你的那个链接，然后将代码复制到你自己的css文件里，然后像这样给其设置颜色</li>
+</ol>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CSS</span><br><span class="line"><span class="selector-class">.icon-shuji</span>:before &#123;</span><br><span class="line">  content: <span class="string">&quot;\e609&quot;</span>;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#59AAFF</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>最后把你的css和js引入到配置文件中</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">inject:</span></span><br><span class="line">  <span class="attr">head:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&lt;link</span> <span class="string">rel=&quot;stylesheet&quot;</span> <span class="string">href=&quot;https://hexo.pifrij.cn/css/icon.css&quot;&gt;</span></span><br><span class="line">  <span class="attr">bottom:</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="站长之家统计"><a href="#站长之家统计" class="headerlink" title="站长之家统计"></a>站长之家统计</h1><ol>
+<li><p><a target="_blank" rel="noopener" href="https://www.umeng.com/">友盟+</a> ，产品-&gt;网站统计 U-Web</p>
+</li>
+<li><p>点击统计代码</p>
+</li>
+<li><p>复制下方的<strong>横排数据显示</strong>代码到 <code>custom_text</code></p>
+</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">footer:</span></span><br><span class="line">  <span class="attr">owner:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">since:</span> <span class="number">2020</span></span><br><span class="line">  <span class="attr">custom_text:</span> </span><br><span class="line">  <span class="attr">copyright:</span> <span class="literal">true</span> <span class="comment"># Copyright of theme and framework</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>结尾</p>
+<p>参考文档：</p>
+<p><a target="_blank" rel="noopener" href="https://imlql.cn/post/bb283ed3.html">Youth的时光录</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.heson10.com/posts/30982.html">黑石博客</a></p>
+<p><a target="_blank" rel="noopener" href="https://butterfly.lete114.top/article/Butterfly-config.html#%E5%BC%95%E5%85%A5">Lete乐特 ’s Blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://butterfly.js.org/">Butterfly</a></p>
+<p><a target="_blank" rel="noopener" href="https://twikoo.js.org/quick-start.html#%E4%BA%91%E5%87%BD%E6%95%B0%E9%83%A8%E7%BD%B2">Twikoo 中文文档</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">chen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://hexo.pifrij.cn/post/4a416765.html">https://hexo.pifrij.cn/post/4a416765.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://hexo.pifrij.cn" target="_blank">chen&blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/hexo/">hexo</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><div class="post-reward"><div class="reward-button button--animated"><i class="fas fa-qrcode"></i> 打赏</div><div class="reward-main"><ul class="reward-all"><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/wx.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/wx.png" alt="wechat"/></a><div class="post-qr-code-desc">wechat</div></li><li class="reward-item"><a href="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/ali.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/ali.png" alt="alipay"/></a><div class="post-qr-code-desc">alipay</div></li></ul></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/73e88b67.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/2.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">hexo部署个人服务器</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/73e88b67.html" title="hexo部署个人服务器"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-08</div><div class="title">hexo部署个人服务器</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/avater.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">chen</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">2</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">如有问题，可留言....</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">文章介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82"><span class="toc-number">2.</span> <span class="toc-text">环境要求</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#node-js%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.</span> <span class="toc-text">node.js安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD"><span class="toc-number">2.1.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.1.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F"><span class="toc-number">2.1.3.</span> <span class="toc-text">验证安装是否成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%85%A8%E5%B1%80%E7%9B%AE%E5%BD%95"><span class="toc-number">2.1.4.</span> <span class="toc-text">设置全局目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git%E5%AE%89%E8%A3%85"><span class="toc-number">2.2.</span> <span class="toc-text">git安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81%E5%AE%89%E8%A3%85%E6%98%AF%E5%90%A6%E6%88%90%E5%8A%9F-1"><span class="toc-number">2.2.3.</span> <span class="toc-text">验证安装是否成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE"><span class="toc-number">2.2.4.</span> <span class="toc-text">设置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo"><span class="toc-number">3.</span> <span class="toc-text">Hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4"><span class="toc-number">3.1.</span> <span class="toc-text">指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-2"><span class="toc-number">3.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%AA%8C%E8%AF%81"><span class="toc-number">3.3.</span> <span class="toc-text">验证</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#butterfly%E4%B8%BB%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">butterfly主题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-3"><span class="toc-number">4.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.</span> <span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E8%A8%80%E4%BF%AE%E6%94%B9"><span class="toc-number">4.2.1.</span> <span class="toc-text">语言修改</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E8%88%AA%E8%8F%9C%E5%8D%95"><span class="toc-number">4.2.2.</span> <span class="toc-text">导航菜单</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E7%B3%BB%E7%BB%9F"><span class="toc-number">4.2.3.</span> <span class="toc-text">搜索系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-4"><span class="toc-number">4.2.3.1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE"><span class="toc-number">4.2.3.2.</span> <span class="toc-text">修改配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%84%E8%AE%BA%EF%BC%88twikoo%EF%BC%89"><span class="toc-number">4.2.4.</span> <span class="toc-text">评论（twikoo）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="toc-number">4.2.4.1.</span> <span class="toc-text">手动部署</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%90%AFtwikoo%E8%AF%84%E8%AE%BA%E7%AE%A1%E7%90%86%E9%9D%A2%E6%9D%BF"><span class="toc-number">4.2.4.2.</span> <span class="toc-text">开启twikoo评论管理面板</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0Github"><span class="toc-number">5.</span> <span class="toc-text">部署到Github</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%83%A8%E7%BD%B2"><span class="toc-number">5.1.</span> <span class="toc-text">部署</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Github%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D"><span class="toc-number">5.2.</span> <span class="toc-text">Github自定义域名</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8F%88%E6%8B%8D%E4%BA%91CDN%E5%85%A8%E7%AB%99%E5%8A%A0%E9%80%9F"><span class="toc-number">6.</span> <span class="toc-text">又拍云CDN全站加速</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E5%86%8C"><span class="toc-number">6.1.</span> <span class="toc-text">注册</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BACDN%E6%9C%8D%E5%8A%A1"><span class="toc-number">6.2.</span> <span class="toc-text">创建CDN服务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="toc-number">6.3.</span> <span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jsDelivr-Github%E5%81%9A%E5%9B%BE%E5%BA%8A"><span class="toc-number">7.</span> <span class="toc-text">jsDelivr+Github做图床</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Typora%E9%9B%86%E6%88%90PicGo"><span class="toc-number">8.</span> <span class="toc-text">Typora集成PicGo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PicGO-2-3-0"><span class="toc-number">8.1.</span> <span class="toc-text">PicGO 2.3.0</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Typora-0-9-86"><span class="toc-number">8.2.</span> <span class="toc-text">Typora 0.9.86</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8E%A8%E8%8D%90%E6%8F%92%E4%BB%B6%E5%92%8C%E9%85%8D%E7%BD%AE"><span class="toc-number">9.</span> <span class="toc-text">推荐插件和配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E7%94%9F%E6%88%90%E6%B0%B8%E4%B9%85url%E8%BF%9E%E6%8E%A5"><span class="toc-number">9.1.</span> <span class="toc-text">文章生成永久url连接</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BE%8E%E5%8C%96"><span class="toc-number">10.</span> <span class="toc-text">美化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#css"><span class="toc-number">10.1.</span> <span class="toc-text">css</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js"><span class="toc-number">10.2.</span> <span class="toc-text">js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E5%85%A5js%EF%BC%8Ccss"><span class="toc-number">10.3.</span> <span class="toc-text">引入js，css</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E6%A0%87"><span class="toc-number">11.</span> <span class="toc-text">阿里自定义图标</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AB%99%E9%95%BF%E4%B9%8B%E5%AE%B6%E7%BB%9F%E8%AE%A1"><span class="toc-number">12.</span> <span class="toc-text">站长之家统计</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/post/73e88b67.html" title="hexo部署个人服务器"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/2.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="hexo部署个人服务器"/></a><div class="content"><a class="title" href="/post/73e88b67.html" title="hexo部署个人服务器">hexo部署个人服务器</a><time datetime="2021-11-08T06:44:03.000Z" title="发表于 2021-11-08 14:44:03">2021-11-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/post/4a416765.html" title="搭建hexo博客"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/1.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="搭建hexo博客"/></a><div class="content"><a class="title" href="/post/4a416765.html" title="搭建hexo博客">搭建hexo博客</a><time datetime="2021-11-07T03:02:00.000Z" title="发表于 2021-11-07 11:02:00">2021-11-07</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/1.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By chen</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text"><a target="_blank" rel="noopener" href="http://www.beian.miit.gov.cn/"><img class="icp-icon" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://cdn.jsdelivr.net/gh/chen020723/pic@master/img/hui.png"><span>渝ICP备2021005342号</span></a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'chen-blog-3g9cfzg0d1323b86',
+      region: ''
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'chen-blog-3g9cfzg0d1323b86',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script></div><link rel="stylesheet" href="https://hexo.pifrij.cn/css/Lete.css"><script data-pjax src="https://hexo.pifrij.cn/js/Lete.js"></script><script src="https://hexo.pifrij.cn/js/Lete.js"></script><script id="canvas_nest" defer="defer" color="0,0,0" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
