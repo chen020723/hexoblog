@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>测试模板</title>
+      <link href="/post/213245.html"/>
+      <url>/post/213245.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 计算机知识 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo部署个人服务器</title>
       <link href="/post/73e88b67.html"/>
       <url>/post/73e88b67.html</url>
