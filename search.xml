@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Linux的mysql自动备份</title>
+      <link href="/post/ed4daf4b.html"/>
+      <url>/post/ed4daf4b.html</url>
+      
+        <content type="html"><![CDATA[<p>前提mysql5.5版本之前的包含5.5</p><h1 id="创建文件"><a href="#创建文件" class="headerlink" title="创建文件"></a>创建文件</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/home/dbback/bkDatabaseName.sh</span><br></pre></td></tr></table></figure><h1 id="添加内容"><a href="#添加内容" class="headerlink" title="添加内容"></a>添加内容</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment">#设置mysql的备份保存目录</span></span><br><span class="line">folder=/home/dbback/</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$folder</span></span><br><span class="line"><span class="comment">#数据库服务器ip，填写服务器的公网地址即可</span></span><br><span class="line">host= </span><br><span class="line"><span class="comment">#用户名</span></span><br><span class="line">user= </span><br><span class="line"><span class="comment">#密码</span></span><br><span class="line">password= </span><br><span class="line"><span class="comment">#要备份的数据库名</span></span><br><span class="line">db= </span><br></pre></td></tr></table></figure><h1 id="执行备份语句"><a href="#执行备份语句" class="headerlink" title="执行备份语句"></a>执行备份语句</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/<span class="built_in">local</span>/mysql/bin/mysqldump -h<span class="variable">$host</span> -u<span class="variable">$user</span> -p<span class="variable">$password</span> <span class="variable">$db</span> user user_coupon merchant merchant_money coupon video &gt; ./geek_$(date +%Y%m%d_%H%M%S).sql</span><br></pre></td></tr></table></figure><h1 id="添加可执行权限"><a href="#添加可执行权限" class="headerlink" title="添加可执行权限"></a>添加可执行权限</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod u+x bkDatabaseName.sh</span><br></pre></td></tr></table></figure><h1 id="测试执行脚本"><a href="#测试执行脚本" class="headerlink" title="测试执行脚本"></a>测试执行脚本</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh bkDatabaseName.sh</span><br></pre></td></tr></table></figure><h1 id="定时查看crontab服务状态"><a href="#定时查看crontab服务状态" class="headerlink" title="定时查看crontab服务状态"></a>定时查看crontab服务状态</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service crond status</span><br></pre></td></tr></table></figure><h1 id="设置定时任务"><a href="#设置定时任务" class="headerlink" title="设置定时任务"></a>设置定时任务</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure><h1 id="重启crontab服务使之生效"><a href="#重启crontab服务使之生效" class="headerlink" title="重启crontab服务使之生效"></a>重启crontab服务使之生效</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/systemctl restart crond.service</span><br></pre></td></tr></table></figure><h1 id="每日1点备份"><a href="#每日1点备份" class="headerlink" title="每日1点备份"></a>每日1点备份</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0 1 * * * /home/dbback/bkDatabaseName.sh</span><br></pre></td></tr></table></figure><h1 id="清空表数据"><a href="#清空表数据" class="headerlink" title="清空表数据"></a>清空表数据</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TRUNCATE TABLE tablename</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+          <category> mysql </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+            <tag> mysql </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Linux的docker安装及命令</title>
       <link href="/post/cfd441f3.html"/>
       <url>/post/cfd441f3.html</url>
